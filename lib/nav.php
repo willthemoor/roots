@@ -12,7 +12,7 @@
  */
 class Roots_Nav_Walker extends Walker_Nav_Menu {
   private $cpt; // Boolean, is current post a custom post type.
-  private $archive; // Stores the current active page url.
+  private $archive; // Stores the archive page for current url.
 
   function __construct() {
     add_filter('nav_menu_css_class', array($this, 'css_classes'), 10, 2);
@@ -86,20 +86,6 @@ class Roots_Nav_Walker extends Walker_Nav_Menu {
     return array_filter($classes, 'is_element_empty');
   }
 
-}
-
-/**
- * Compare two urls. Returns boolean.
- */
-function roots_url_compare($url, $rel) {
-  $url = trailingslashit($url);
-  $rel = trailingslashit($rel);
-
-  if ((strcasecmp($url, $rel) === 0) || roots_root_relative_url($url) == $rel) { 
-    return true; 
-  } else {
-    return false;
-  }
 }
 
 /**
